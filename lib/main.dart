@@ -35,6 +35,13 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
 
-    return Container();
+    return Scaffold(
+      backgroundColor: Colors.blue.shade100,
+      body: SafeArea(
+        child: ListView(
+          children: List.generate(100, (index) => ListTile(title: Text("Item $index"),)),
+        ),
+      ),
+    );
   }
 }
