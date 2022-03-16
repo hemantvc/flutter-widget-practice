@@ -34,12 +34,35 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
-        child: Row(children: [
-        Expanded(child:Text("Om1")),
-      Expanded(child:Text(" hariom")),
-           Text("Hariom"),
-           Expanded(child:Text(" *Om")),
+        child: Wrap(children: [
+          Container(
+            color: Colors.blue,
+            width: 100,
+            height: 100,
+            child: Text("O",style: TextStyle(color: Colors.white),),),
+          Container(
+              color: Colors.yellow,
+              width: 100,
+              height: 100,
+              child:Text(" m",style: TextStyle(color:Colors.white),),),
+          Container(
+              width: 100,
+              height: 100,
+              color: Colors.pink,
+              child:Text(" *Om", style: TextStyle(color:Colors.white),)),
+          Container(
+              width: 100,
+              height: 100,
+              color: Colors.amber,
+              child:Text(" *Om", style: TextStyle(color:Colors.white),)),
+          Container(
+              width: 100,
+              height: 100,
+              color: Colors.lime,
+              child:Text(" *Om", style: TextStyle(color:Colors.white),))
+
         ]),
+
       ),
     );
   }
