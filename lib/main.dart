@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+/**
+ * Flutter wrap widget
+ * https://medium.com/flutter-community/flutter-wrap-widget-e1ee0b005b16
+ */
 void main() {
   runApp(const MyApp());
 }
@@ -30,17 +34,31 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
+  // state variable
+  var _myDuration = Duration(seconds: 1);
+  var _myValue = Color(0xFF00BB00);
+  var _myNewValue = Color(0xFF0000FF);
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: Colors.blue.shade100,
       body: SafeArea(
-        child: ListView(
-          children: List.generate(100, (index) => ListTile(title: Text("Item $index"),)),
-        ),
+        child: Stack(
+          children:[ AnimatedContainer(
+            duration: _myDuration,
+            color: _myValue,
+            child: Container(),
+          ),
+          FlatButton(
+            color: Colors.white,
+            child: Text(("Click me"), style: TextStyle(color: Colors.red.shade800),),onPressed: (){
+              setState(() {
+                _myValue = _myNewValue;
+              });
+          },)
+        ]),
+
       ),
     );
   }
