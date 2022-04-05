@@ -35,13 +35,14 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
 
-    return Column(
+    return Stack(
       children: [
         _topBar(),
         Opacity(
-        opacity:0.4,
+        opacity:0.0,
           child: _containtArea(),
         ),
+        _bottomBar()
       ],
     );
   }
@@ -62,6 +63,10 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
-
+  _bottomBar(){
+    return Container(
+      child: Text("Thank you"),
+    );
+  }
 
 }
