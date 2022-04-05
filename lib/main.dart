@@ -35,6 +35,33 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
 
-    return Container();
+    return Column(
+      children: [
+        _topBar(),
+        Opacity(
+        opacity:0.4,
+          child: _containtArea(),
+        ),
+      ],
+    );
   }
+
+
+  _topBar(){
+    return Container(
+      child: Text("Welcome"),
+    );
+  }
+
+  _containtArea(){
+    return Container(
+      child: Image.network(
+          'https://raw.githubusercontent.com/flutter/assets-for-api-docs/master/packages/diagrams/assets/blend_mode_destination.jpeg',
+          color: const Color.fromRGBO(255, 255, 255, 0.5),
+          colorBlendMode: BlendMode.modulate
+      ),
+    );
+  }
+
+
 }

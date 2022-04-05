@@ -1,0 +1,4 @@
+io/flutter/plugins/GeneratedPluginRegistrant.java
+ io.flutter.plugins.GeneratedPluginRegistrant
+com/hariom/flutterwidget/BuildConfig.java
+ com.hariom.flutterwidget.BuildConfig
