@@ -15,26 +15,79 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+class MyHomePage extends StatelessWidget {
+  const MyHomePage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: ElevatedButton(
+        onPressed: () => Navigator.push(context, MaterialPageRoute(
+          builder:(context) =>FutureWidgetPage(title: "Future Widget",),
+        )),
+        child: Text("Demonstrate FutureWidget"),
+      ),
+    );
+  }
+}
+
+
+
+class FutureWidgetPage extends StatefulWidget {
+  const FutureWidgetPage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<FutureWidgetPage> createState() => _FutureWidgetPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _FutureWidgetPageState extends State<FutureWidgetPage> {
 
+  Future<String> getData() {
+    return Future.delayed(Duration(seconds: 2), () {
+      return "Om guru dev.";
+      // throw Exception("Custom Error");
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
 
-    return Container();
+    return Scaffold(
+      body: FutureBuilder(
+        builder: (context, snapshot) {
+          print("snapshot.connectionState:${snapshot.connectionState}");
+          if(snapshot.connectionState == ConnectionState.done){
+
+            if(snapshot.hasError){
+                    return Center(
+                      child: Text('${snapshot.error} occurred',style: TextStyle(fontSize: 18),),
+                    );
+            }else if(snapshot.hasData){
+              final data = snapshot.data as String;
+              return Center(
+                child: Text(
+                  '$data'
+                ),
+              );
+            }
+
+          }
+          // Displaying LoadingSpinner to indicate waiting state
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        },
+        future: getData(),
+      ),
+      );
+
   }
 }
+
